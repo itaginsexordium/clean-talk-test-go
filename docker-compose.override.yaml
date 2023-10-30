@@ -1,0 +1,11 @@
+version: '3.7'
+
+x-project-env: &project-ports-env
+    HTTP_BIND_ADDR: ${HTTP_BIND_ADDR}
+    OUTPUT_PORTNUM: ${OUTPUT_PORTNUM}
+services:
+  app:
+    env_file:
+      - .env
+    ports:
+      - ${OUTPUT_PORTNUM}${HTTP_BIND_ADDR}

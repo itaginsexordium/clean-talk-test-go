@@ -21,6 +21,6 @@ endpoint для проверки
 Dockerfile билдится под oracle ARM 
 если приложение нужно запускать на  x86 поменяйте 
 строку  6:
-RUN GOOS=linux GOARCH=arm64 go build -o testovoe main.go
+`RUN GOOS=linux GOARCH=arm64 go build -o testovoe main.go`
 на : 
-RUN GOOS=linux GOARCH=amd64 go build -o testovoe main.go
+`RUN GOOS=linux GOARCH=amd64 go build -o testovoe main.go`

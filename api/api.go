@@ -25,7 +25,6 @@ type GeoIpAPI struct {
 
 func New(config *config.Config, mc *storage.MemcacheClient , db *geoip2.Reader ) *GeoIpAPI {
 	echo := echo.New()
-	
 	api := &GeoIpAPI{
 		config: config,
 		mc:     mc,
@@ -34,7 +33,6 @@ func New(config *config.Config, mc *storage.MemcacheClient , db *geoip2.Reader )
 	}
 
 	echo.GET("/", api.getRoot)
-
 	return api
 }
 
@@ -44,7 +42,6 @@ func (api *GeoIpAPI) Start() error {
 
 func (api *GeoIpAPI) getRoot(c echo.Context) error {
 	rIp := c.QueryParam("ip")
-
 	if rIp == "" || rIp == "null" {
 		return c.String(http.StatusInternalServerError, "ip param is required and can't be empty or null")
 	}
@@ -58,17 +55,14 @@ func (api *GeoIpAPI) getRoot(c echo.Context) error {
 
 	parts := strings.Split(rIp, "/")
 	if len(parts) != 2 {
-
 		log.Info("Invalid IP/CIDR format:")
 		return c.String(http.StatusInternalServerError, "Invalid IP/CIDR format")
 	}
 
 	ipStr := parts[0]
-
 	// Parse the IP address
 	ip := net.ParseIP(ipStr)
 	if ip == nil {
-
 		log.Info("Invalid IP address:")
 		return c.String(http.StatusInternalServerError, "Invalid IP address")
 	}
@@ -86,7 +80,6 @@ func (api *GeoIpAPI) getRoot(c echo.Context) error {
 	}
 
 	jsonData, err = json.Marshal(enty)
-
 	if err != nil {
 		log.Info("Error marshaling JSON:", err)
 		return c.String(http.StatusInternalServerError, "Internal Server Error")
@@ -94,7 +87,6 @@ func (api *GeoIpAPI) getRoot(c echo.Context) error {
 
 	log.Info("set mem")
 	api.mc.Set(rIp, jsonData)
-
 	return c.JSONBlob(http.StatusOK, jsonData)
 }
  

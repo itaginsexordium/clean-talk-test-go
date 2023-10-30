@@ -15,18 +15,14 @@ func main (){
 	}
 
 	mcConfig := []string{cnf.MemcacheURL}
-
 	mc := storage.NewMemcacheClient(mcConfig);	
-
 	db, err := geoip2.Open(cnf.GeoIpPath)
-
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
-
+	
 	api  := api.New(cnf, mc , db)
-
 	if err = api.Start(); err != nil {
 		log.Fatal("Failed to start  API: ", err)
 	}

@@ -3,7 +3,7 @@ FROM golang:1.21.3
 COPY . /go/src/github.com/itaginsexordium/clean-talk-test-go
 WORKDIR /go/src/github.com/itaginsexordium/clean-talk-test-go
 
-RUN GOOS=linux GOARCH=amd64 go build -o testovoe main.go
+RUN GOOS=linux GOARCH=arm64 go build -o testovoe main.go
 
 FROM ubuntu:jammy
 RUN  apt-get update \

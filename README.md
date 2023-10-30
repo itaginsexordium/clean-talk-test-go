@@ -18,7 +18,7 @@ endpoint для проверки
 после билда и поднятия можно перейти на приложение по указанному порту из .env OUTPUT_PORTNUM 
 
 
-Dockerfile генерируется под oracle ARM 
+Dockerfile билдится под oracle ARM 
 если приложение нужно запускать на  x86 поменяйте 
 строку  6:
 RUN GOOS=linux GOARCH=arm64 go build -o testovoe main.go

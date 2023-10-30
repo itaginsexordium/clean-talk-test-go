@@ -39,7 +39,7 @@ func New(config *config.Config, mc *storage.MemcacheClient , db *geoip2.Reader )
 }
 
 func (api *GeoIpAPI) Start() error {
-	return api.echo.Start(api.config.HTTPBindAddr)
+	return api.echo.Start(":"+api.config.HTTPBindAddr)
 }
 
 func (api *GeoIpAPI) getRoot(c echo.Context) error {

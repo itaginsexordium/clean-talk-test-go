@@ -20,6 +20,6 @@ COPY --from=0  /go/src/github.com/itaginsexordium/clean-talk-test-go/testovoe /
 COPY --from=0  /go/src/github.com/itaginsexordium/clean-talk-test-go/testovoe /
 COPY ./source/db/GeoLite2-Country.mmdb /source/db/GeoLite2-Country.mmdb
 
-EXPOSE 8080
+EXPOSE ${HTTP_BIND_ADDR}
+
 ENTRYPOINT [ "./testovoe" ]
-# CMD ["tail", "-f", "/dev/null"]

@@ -8,4 +8,4 @@ services:
     env_file:
       - .env
     ports:
-      - ${OUTPUT_PORTNUM}${HTTP_BIND_ADDR}
+      - ${OUTPUT_PORTNUM}:${HTTP_BIND_ADDR}
